@@ -1,3 +1,6 @@
+![Your paragraph text](https://github.com/user-attachments/assets/c91f137d-5ddb-479e-8130-1f118734cebf)
+
+
 🎮 Free Fire Icon Pack
 A collection of high-quality icons ripped, extracted, or recreated from the legendary Free Fire game. Whether you're a fan, a modder, or just love the game's vibrant art style — this pack is for you!
 

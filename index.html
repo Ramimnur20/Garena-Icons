@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garena Icons Browser</title>
+  <style>
+    body {
+      margin: 0;
+      background: #121212;
+      font-family: sans-serif;
+      color: #fff;
+    }
+    header {
+      padding: 1rem;
+      background: #1e1e1e;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    #search {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.5rem;
+      width: 300px;
+      max-width: 90%;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+    #gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+      padding: 1rem;
+    }
+    .icon-box {
+      background: #1e1e1e;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    .icon-box:hover {
+      transform: scale(1.05);
+    }
+    .icon-box img {
+      width: 100%;
+      height: 100px;
+      object-fit: contain;
+    }
+    .filename {
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+      overflow-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <header>Garena Icon Viewer</header>
+  <input type="text" id="search" placeholder="Search icons...">
+  <div id="gallery"></div>
+
+  <script>
+    const gallery = document.getElementById('gallery');
+    const searchInput = document.getElementById('search');
+    let allIcons = [];
+
+    async function fetchIcons() {
+      const res = await fetch('https://api.github.com/repos/Ramimnur20/Garena-Icons/contents/icons');
+      const items = await res.json();
+      return items
+        .filter(item => item.type === 'file' && /\.(png|jpg|svg|webp)$/i.test(item.name))
+        .map(file => ({ name: file.name, url: file.download_url }));
+    }
+
+    function render(icons) {
+      gallery.innerHTML = icons.map(icon => `
+        <div class="icon-box">
+          <a href="${icon.url}" download>
+            <img src="${icon.url}" alt="${icon.name}">
+          </a>
+          <div class="filename">${icon.name}</div>
+        </div>
+      `).join('');
+    }
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const filtered = allIcons.filter(icon => icon.name.toLowerCase().includes(query));
+      render(filtered);
+    });
+
+    fetchIcons().then(icons => {
+      allIcons = icons;
+      render(allIcons);
+    });
+  </script>
+</body>
+</html>

@@ -26,4 +26,6 @@ Voice Pack Icons
 many many MORE!
 
 ⚠️ Disclaimer
-All icons are property of Garena. This project is for educational and archival purposes only. No commercial use is allowed.
+All icons and assets included in this pack are the intellectual property of Garena and the developers of Free Fire. This pack is provided strictly for educational, archival, and fan-use purposes only.
+
+I do not claim ownership of any content in this release, and no commercial usage is intended or allowed. If you're a copyright holder and want anything removed, please open an issue or contact me directly — no drama 😅
